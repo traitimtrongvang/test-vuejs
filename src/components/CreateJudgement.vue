@@ -21,37 +21,64 @@ export default {
   data() {
     return {
 
-      techZenGoalList: [
-        {name: "muc tieu 1"},
-        {name: "muc tieu 2"},
-        {name: "muc tieu 3"},
-      ],
-
-      departmentGoalList: [
-        {name: "muc tieu 1"},
-        {name: "muc tieu 2"},
-        {name: "muc tieu 3"},
-      ],
-
-      defaultTarget: {
-        content: "noi dung muc tieu",
-        stepList: [
-          {name: "buoc 1"},
-          {name: "buoc 2"},
-          {name: "buoc 3"},
+      techZenGoalList: {
+        validationRuleList: [
+          {
+            behavior: "on-submit",
+            condition: (value) => value.length === 0,
+            error: "at least one"
+          }
         ],
-      },
-
-      targetList: [
-        {
-          content: "noi dung muc tieu",
-          stepList: [
-            {name: "buoc 1"},
-            {name: "buoc 2"},
-            {name: "buoc 3"},
-          ],
-        }
-      ]
+        error: "",
+        value: [
+          {
+            validationRuleList: [
+              {
+                behavior: "on-submit",
+                condition: (value) => value.length === 0,
+                error: "at least one"
+              }
+            ],
+            error: "",
+            value: "xxx1"
+          },
+          {
+            error: "",
+            value: "xxx2"
+          }
+        ]
+      }
+      // techZenGoalList: [
+      //   {name: "muc tieu 1"},
+      //   {name: "muc tieu 2"},
+      //   {name: "muc tieu 3"},
+      // ],
+      //
+      // departmentGoalList: [
+      //   {name: "muc tieu 1"},
+      //   {name: "muc tieu 2"},
+      //   {name: "muc tieu 3"},
+      // ],
+      //
+      // defaultTarget: {
+      //   content: "noi dung muc tieu",
+      //   stepList: [
+      //     {name: "buoc 1"},
+      //     {name: "buoc 2"},
+      //     {name: "buoc 3"},
+      //   ],
+      // },
+      //
+      // targetList: [
+      //   {
+      //     content: "noi dung muc tieu",
+      //     stepList: [
+      //       {name: "buoc 1"},
+      //       {name: "buoc 2"},
+      //       {name: "buoc 3"},
+      //     ],
+      //   }
+      // ]
 
     }
   }
@@ -62,12 +89,12 @@ export default {
   <section class="grid grid-cols-[400px_1fr] gap-3">
 
     <article>
-      <ItemContainer :itemList="techZenGoalList" title="Muc Tieu TechZen"/>
-      <ItemContainer :itemList="departmentGoalList" title="Muc Tieu Bo Phan"/>
+      <ItemContainer :data="techZenGoalList" title="Muc Tieu TechZen"/>
+<!--      <ItemContainer :itemList="departmentGoalList" title="Muc Tieu Bo Phan"/>-->
     </article>
 
     <div>
-      <TargetContainer :targetList="targetList" />
+<!--      <TargetContainer :targetList="targetList" />-->
 
       <div class="flex gap-2">
         <button @click="handleTriggerAddNew" class="bg-green-500">Add New Muc Tieu</button>
@@ -77,11 +104,11 @@ export default {
     </div>
 
     <div class="flex flex-col gap-4">
-      <div>
-        <strong>target list</strong>
-        <p>{{targetList}}</p>
-        <p>//////////////</p>
-      </div>
+<!--      <div>-->
+<!--        <strong>target list</strong>-->
+<!--        <p>{{targetList}}</p>-->
+<!--        <p>//////////////</p>-->
+<!--      </div>-->
 
       <div>
         <strong>techZenGoalList</strong>
@@ -89,11 +116,11 @@ export default {
         <p>//////////////</p>
       </div>
 
-      <div>
-        <strong>departmentGoalList</strong>
-        <p>{{departmentGoalList}}</p>
-        <p>//////////////</p>
-      </div>
+<!--      <div>-->
+<!--        <strong>departmentGoalList</strong>-->
+<!--        <p>{{departmentGoalList}}</p>-->
+<!--        <p>//////////////</p>-->
+<!--      </div>-->
     </div>
 
   </section>

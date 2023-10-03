@@ -8,8 +8,20 @@ export default {
 
   props: {
     title: String,
-    itemList: Array,
-    class: String
+    data: Object,
+    class: String,
+    error: String
+  },
+
+  watch: {
+    ["data.value"]: {
+      deep: true,
+      handler(newVal, oldVal) {
+        for (const rule of this.data.validationRuleList) {
+          this.data.error = rule.behavior === "on-change" && rule.condition(newVal) ? rule.error : ""
+        }
+      }
+    }
   },
 
   data() {
@@ -25,26 +37,26 @@ export default {
     },
 
     handleRemoveItem(ind) {
-      this.itemList.splice(ind, 1)
+      this.data.value.splice(ind, 1)
     },
 
-    handleCompleteAddNewItem(newName) {
-      if (newName) this.itemList.push({name: newName})
+    handleCompleteAddNewItem(newVal) {
+      if (newVal) this.data.value.push({error: "", value: newVal})
       this.isAddNew = false
     }
 
   }
 }
 </script>
-
 <template>
   <section class="flex flex-col gap-3 w-[300px] {{this.class}}">
 
     <p>{{title}}</p>
 
     <Item
-        v-for="(item, ind) in itemList"
-        v-model="item.name"
+        v-for="(item, ind) in data.value"
+        v-model="item.value"
+        :error="item.error"
         :key="ind"
         :onClose="() => handleRemoveItem(ind)"
     />
@@ -54,6 +66,8 @@ export default {
         :isFocus="true"
         :onSave="handleCompleteAddNewItem"
     />
+
+    <p>{{data.error}}</p>
 
     <button @click="handleTriggerAddNewItem">add new</button>
 

@@ -6,7 +6,8 @@ export default {
     modelValue: String, // the name have to be modelValue
     onClose: Function,
     onSave: Function,
-    isFocus: Boolean
+    isFocus: Boolean,
+    error: String
   },
 
   mounted() {
@@ -45,7 +46,7 @@ export default {
         @input="handleInputChange($event.target.value)"
         @blur="handleInputBlur"
     >
-
+    <p>{{error}}</p>
     <button
         class="p-3"
         @click="onClose"
