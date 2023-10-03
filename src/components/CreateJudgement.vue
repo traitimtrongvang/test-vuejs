@@ -47,7 +47,7 @@ export default {
             value: "xxx2"
           }
         ]
-      }
+      },
       // techZenGoalList: [
       //   {name: "muc tieu 1"},
       //   {name: "muc tieu 2"},
@@ -59,26 +59,28 @@ export default {
       //   {name: "muc tieu 2"},
       //   {name: "muc tieu 3"},
       // ],
-      //
-      // defaultTarget: {
-      //   content: "noi dung muc tieu",
-      //   stepList: [
-      //     {name: "buoc 1"},
-      //     {name: "buoc 2"},
-      //     {name: "buoc 3"},
-      //   ],
-      // },
-      //
-      // targetList: [
-      //   {
-      //     content: "noi dung muc tieu",
-      //     stepList: [
-      //       {name: "buoc 1"},
-      //       {name: "buoc 2"},
-      //       {name: "buoc 3"},
-      //     ],
-      //   }
-      // ]
+
+      defaultTarget: {
+        targetName: {
+          error: "",
+          value: ""
+        },
+        stepList: {
+          error: "",
+          value: [
+            {
+
+            }
+          ]
+        }
+      },
+
+      targetList: {
+        validationRule: [],
+        error: "",
+        value: [
+        ]
+      }
 
     }
   }
